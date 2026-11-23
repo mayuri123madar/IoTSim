@@ -57,7 +57,7 @@ The recommendation engine evaluates supported protocol configurations using simu
 | Frontend | HTML, CSS, JavaScript |
 | Simulation Engine | Python |
 | Data Visualisation | JavaScript-based charts |
-| Testing | Pytest |
+| Testing | Pytest/unittest |
 | Version Control | Git and GitHub |
 
 ## Project Structure
