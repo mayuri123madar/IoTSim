@@ -1,34 +1,68 @@
-IoTSim – IoT Network Simulator
-An event-driven, web-based IoT network simulation platform designed to model device communication, network performance, energy consumption, and protocol behaviour.
+# IoTSim – IoT Network Simulator
 
-IoTSim allows users to define IoT networks through Python-based simulation scripts, execute simulations through a web interface, and analyze the resulting network behaviour.
+IoTSim is a web-based Internet of Things (IoT) network simulation platform built using Python and Flask. It allows users to simulate IoT networks, study communication protocols, analyse energy consumption, and understand network performance through a visual interface.
 
-Overview
-IoTSim provides a simulation environment for understanding how IoT devices communicate and how network conditions affect their performance and energy consumption.
+The project aims to make IoT network concepts easier to understand through script-based simulation and performance analysis.
 
-The application uses an event-driven simulation engine to model network activity and presents simulation results through visual representations and analytical outputs.
+## Features
 
-Key Features
-Network Simulation: Define IoT devices, connections, and communication traffic.
-Event-Driven Engine: Model packet generation, transmission, reception, retries, and packet drops.
-Protocol Modelling: Support for multiple wired and wireless communication protocols.
-Energy Analysis: Track transmission, reception, idle, and sleep energy consumption.
-Battery Monitoring: Model battery depletion and node failure.
-Network Routing: Simulate traffic rerouting when alternative paths are available.
-Protocol Recommendations: Compare candidate protocols using simulation results.
-Network Management: Save, load, list, and delete network configurations.
-Simulation Traces: Generate and manage trace files.
-Visual Analytics: View network topology and simulation-related information.
-Technology Stack
-Technology	Purpose
-Python	Backend and simulation logic
-Flask	Web application framework
-JavaScript	Frontend interactions
-HTML5	Application structure
-CSS3	User interface styling
-JSON	Network configuration and data exchange
-pytest	Automated testing
-Project Architecture
+### 1. IoT Network Simulation
+- Create and simulate IoT network scenarios.
+- Execute simulation scripts through the web application.
+- Observe communication between connected devices.
+- Analyse packet transmission, delivery, loss, and retries.
+- Study the impact of device failures and battery depletion.
+
+### 2. Protocol Simulation
+IoTSim supports simulation models for multiple communication protocols, including:
+
+- Wi-Fi
+- Bluetooth Low Energy (BLE)
+- Zigbee
+- LoRa
+- MQTT
+- CoAP
+- I2C
+- SPI
+- UART
+- CAN
+
+### 3. Energy Consumption Analysis
+- Estimate energy consumption of IoT devices.
+- Analyse battery usage during simulation.
+- Study the relationship between communication activity and energy consumption.
+- Estimate network lifetime using the implemented energy model.
+
+### 4. Network Performance Analysis
+- Examine packet transmission and delivery.
+- Analyse packet loss and retry behaviour.
+- Study buffer overflow and device battery depletion.
+- Observe how network performance changes under different conditions.
+
+### 5. Protocol Recommendation
+The recommendation engine evaluates supported protocol configurations using simulation results and ranks candidates based on network lifetime.
+
+### 6. Network Management
+- Save network configurations.
+- Load previously saved networks.
+- View saved network information.
+- Delete saved networks.
+
+## Technology Stack
+
+| Component | Technology |
+|---|---|
+| Programming Language | Python |
+| Backend Framework | Flask |
+| Frontend | HTML, CSS, JavaScript |
+| Simulation Engine | Python |
+| Data Visualisation | JavaScript-based charts |
+| Testing | Pytest |
+| Version Control | Git and GitHub |
+
+## Project Structure
+
+```text
 IoTSim/
 │
 ├── app.py
@@ -42,75 +76,151 @@ IoTSim/
 │
 ├── templates/
 ├── static/
-│
 ├── saved_networks/
-│
-├── requirements.txt
-├── protocol_parameters.json
 │
 ├── test_engine.py
 ├── test_protocols.py
 ├── test_sandbox.py
 ├── test_hand_calculations.py
-└── test_chatbot.py
-Installation
-1. Clone the repository
+├── test_chatbot.py
+│
+├── requirements.txt
+├── MAJOR_PROJECT_README.md
+├── PROTOCOL_DOCUMENTATION.md
+└── README.md
+```
+
+## Installation and Setup
+
+### Prerequisites
+
+- Python 3.10 or later
+- pip
+- Git
+
+### Step 1: Clone the Repository
+
+```bash
 git clone https://github.com/mayuri123madar/IoTSim.git
+```
+
+### Step 2: Navigate to the Project Directory
+
+```bash
 cd IoTSim
-2. Create a virtual environment
-python -m venv venv
-Activate it:
+```
 
-Windows
+### Step 3: Install Dependencies
 
-venv\Scripts\activate
-Linux / macOS
-
-source venv/bin/activate
-3. Install dependencies
+```bash
 pip install -r requirements.txt
-4. Start the application
+```
+
+### Step 4: Start the Application
+
+```bash
 python app.py
-Open your browser and navigate to:
+```
 
+### Step 5: Open the Application
+
+Open your browser and visit:
+
+```text
 http://127.0.0.1:5000
-Testing
-Run the automated test suite using:
+```
 
+## Running Tests
+
+Run the test suite from the project directory:
+
+```bash
 python -m pytest
-Run individual test modules:
+```
 
+To run individual test files:
+
+```bash
 python -m pytest test_engine.py
 python -m pytest test_protocols.py
 python -m pytest test_sandbox.py
 python -m pytest test_hand_calculations.py
-Simulation and Analysis
-The application exposes simulation functionality through its Flask backend.
+python -m pytest test_chatbot.py
+```
 
-The primary simulation endpoint is:
+## Main Application Endpoints
 
-POST /simulate
-Other application endpoints support network management, trace management, and protocol recommendations.
+| Endpoint | Method | Purpose |
+|---|---|---|
+| `/simulate` | POST | Execute an IoT simulation |
+| `/save_network` | POST | Save a network configuration |
+| `/load_network` | POST | Load a saved network |
+| `/list_networks` | GET | List saved networks |
+| `/delete_network` | POST | Delete a saved network |
+| `/recommend_by_simulation` | POST | Recommend protocols using simulation results |
+| `/recommend_protocol` | POST | Get protocol recommendations |
+| `/compare_protocols` | POST | Compare communication protocols |
+| `/recommend_topology` | POST | Get network topology recommendations |
 
-Simulation scripts should follow the scripting interface supported by the application. The standalone examples in the repository should not be assumed to be directly executable through the web editor.
+## Simulation and Modelling
 
-Modelling Assumptions and Limitations
-IoTSim is a software-based simulation environment, not a physical IoT deployment.
+IoTSim uses an event-driven simulation approach to represent the behaviour of IoT networks.
 
-Some radio and hardware parameters are model assumptions. The simulation does not currently represent every real-world networking effect, such as MAC-layer collisions and interference between nodes.
+The simulation engine models activities such as:
 
-Simulation results should therefore be interpreted as model-based estimates rather than guaranteed real-world measurements.
+- Device communication
+- Packet generation and transmission
+- Packet delivery and loss
+- Retransmission attempts
+- Buffer overflow
+- Battery depletion
+- Network lifetime
 
-The script execution sandbox uses process and resource restrictions but is not equivalent to hardened container isolation.
+The application also provides different views to examine device behaviour, protocol performance, energy consumption, and data flow.
 
-Future Scope
-More detailed network behaviour modelling.
-Improved protocol evaluation.
-Expanded simulation scenarios.
-Additional network performance metrics.
-Enhanced visualization and reporting.
-Further validation against real-world measurements.
-Repository
+## Energy Model
+
+The simulator uses the electrical energy relationship:
+
+**Energy = Voltage × Current × Time**
+
+Where:
+
+- Energy is measured in joules.
+- Voltage is measured in volts.
+- Current is measured in amperes.
+- Time is measured in seconds.
+
+This relationship is used by the energy model to estimate device energy consumption.
+
+## Security Considerations
+
+The application includes script validation and sandbox execution mechanisms intended to restrict user-submitted simulation scripts.
+
+These mechanisms should not be considered equivalent to operating-system-level or container-based isolation. Additional security hardening is recommended before deploying the application in an untrusted production environment.
+
+## Current Limitations
+
+- Protocol behaviour is represented using simplified simulation models.
+- Radio interference and detailed MAC-layer collision behaviour are not fully modelled.
+- Real physical IoT hardware is not connected to the simulator.
+- Energy consumption depends on the assumptions and parameters implemented in the models.
+- Simulation results are estimates and may differ from real-world device measurements.
+
+## Future Enhancements
+
+- More detailed protocol modelling.
+- Improved network visualisation.
+- Advanced energy optimisation.
+- More realistic wireless communication modelling.
+- Extended security isolation for user-submitted scripts.
+- Integration with real-world IoT datasets.
+- Additional simulation scenarios and performance metrics.
+
+## Project Repository
+
 GitHub: https://github.com/mayuri123madar/IoTSim
 
-IoTSim – Simulating Networks. Understanding Performance. Optimizing Connectivity.
+---
+
+**IoTSim – Simulating IoT Networks, Understanding Communication, and Analysing Performance.**
